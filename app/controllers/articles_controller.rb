@@ -1,24 +1,17 @@
 class ArticlesController < ApplicationController
-    # GET /articles.json
+  # GET /articles.json
   def index
     @articles = Article.order(created_at: :desc).page(params[:page]).per(params[:per_page])
   end
 
-  # GET /articles/new
-  def new
-    @article = Article.new
-    render :index
-  end
-
-  # POST /articles
   # POST /articles.json
   def create
     @article = Article.new(article_params)
 
     if @article.save
-      render json: { notice: '記事の作成に成功しました', location: article_path(@article) }, status: :created
+      render json: { notice: '記事の作成に成功しました' }, status: :created
     else
-      render json: @article.errors.full_messages, status: :unprocessable_entity
+      render json: { alert: @article.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
