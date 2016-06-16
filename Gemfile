@@ -14,6 +14,7 @@ gem 'kaminari'
 # Assets
 gem 'browserify-rails'
 gem 'react-rails'
+gem 'react-router-rails', '~>0.13.3.2'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks

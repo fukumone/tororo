@@ -24,12 +24,14 @@ const ArticlesIndex = React.createClass({
         return (
             <div className="articleIndex">
                 <h1>記事一覧</h1>
+                <h3><ReactRouter.Link to="new" className="btn btn-default">新規作成</ReactRouter.Link></h3>
                 <ArticleIndexTable articles={this.state.articles}/>
             </div>
         )
     }
 })
 
+// <td><ReactRouter.Link to="edit" params={{ id: article.id }}>{article.name}</ReactRouter.Link></td>
 const ArticleIndexTable = React.createClass ({
     render() {
         let articleNodes = this.props.articles.map((article, i) => {
@@ -62,11 +64,4 @@ const ArticleIndexTable = React.createClass ({
             </table>
         )
     }
-})
-
-$(() => {
-    ReactDOM.render(
-        <ArticlesIndex />,
-        document.getElementById('content')
-    )
 })
