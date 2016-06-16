@@ -9,6 +9,8 @@ gem 'puma', '~> 3.0'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 
+gem 'kaminari'
+
 # Assets
 gem 'browserify-rails'
 gem 'react-rails'
@@ -20,6 +22,8 @@ gem 'turbolinks', '~> 5.x'
 gem 'uglifier', '>= 1.3.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
+gem 'sprockets', '>= 3.0.0'
+gem 'sprockets-es6', require: 'sprockets/es6'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -31,6 +35,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'quiet_assets'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
