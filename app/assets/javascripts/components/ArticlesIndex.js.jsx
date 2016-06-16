@@ -31,14 +31,13 @@ const ArticlesIndex = React.createClass({
     }
 })
 
-// <td><ReactRouter.Link to="edit" params={{ id: article.id }}>{article.name}</ReactRouter.Link></td>
 const ArticleIndexTable = React.createClass ({
     render() {
         let articleNodes = this.props.articles.map((article, i) => {
             return (
                 <tr>
                     <td>{article.id}</td>
-                    <td>{article.name}</td>
+                    <td><ReactRouter.Link to="edit" params={{ id: article.id }}>{article.name}</ReactRouter.Link></td>
                     <td>{article.body}</td>
                     <td>{article.created_at}</td>
                     <td>{article.updated_at}</td>

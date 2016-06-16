@@ -10,7 +10,8 @@ $(() => {
     let routes = (
         <ReactRouter.Route path="/">
             <ReactRouter.DefaultRoute name="index" handler={ArticlesIndex}/>
-            <ReactRouter.Route path="/article/new" name="new" handler={ArticleNew}/>
+            <ReactRouter.Route name="new" path="/article/new" handler={ArticleNew}/>
+            <ReactRouter.Route name="edit" path="/article/:id/edit" handler={ArticleEdit}/>
             <ReactRouter.NotFoundRoute handler={NotFound} />
         </ReactRouter.Route>
     )

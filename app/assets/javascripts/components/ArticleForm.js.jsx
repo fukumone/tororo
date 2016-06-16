@@ -4,13 +4,17 @@ const ArticleForm = React.createClass({
     },
     handleSubmit: function(e) {
         e.preventDefault()
-        let name = this.state.name.trim()
-        let body = this.state.body.trim()
+
+        let params = {}
+
+        Object.keys(this.refs).forEach((key) => {
+            params[key] = ReactDOM.findDOMNode(this.refs[key]).value
+        })
+
         $.ajax({
             url: this.props.action,
             method: this.props.method,
-            type: 'POST',
-            data: { article: { name: name, body: body} },
+            data: { article: params },
             success: function(data) {
                 this.setState({data: data})
                 // 調査
@@ -22,14 +26,9 @@ const ArticleForm = React.createClass({
             }.bind(this)
         })
     },
-    handleNameChange: function(e) {
-        this.setState({name: e.target.value});
-    },
-    handleBodyChange: function(e) {
-        this.setState({body: e.target.value});
-    },
     render() {
         let alerts
+        let article = this.props.article
         if (this.state.alert.length > 0) {
             alerts = (
                 <div className="alert alert-danger">
@@ -46,8 +45,7 @@ const ArticleForm = React.createClass({
                          <div className="col-sm-10">
                             <input ref="name"
                                    className="form-control"
-                                   value={this.state.name}
-                                   onChange={this.handleNameChange}/>
+                                   defaultValue={article ? article.name : null} />
                         </div>
                     </div>
                     <div className="form-group">
@@ -55,8 +53,7 @@ const ArticleForm = React.createClass({
                         <div className="col-sm-10">
                             <input ref="body"
                                    className="form-control"
-                                   value={this.state.body}
-                                   onChange={this.handleBodyChange}/>
+                                   defaultValue={article ? article.body : null} />
                         </div>
                     </div>
                     <div className="form-group">
