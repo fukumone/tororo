@@ -2,7 +2,7 @@ const Header = React.createClass({
     render: function() {
         return (
             <header>
-                <h1>ReactSampleアプリケーション</h1>
+                <h1><ReactRouter.Link to="index" >ReactSampleアプリケーション</ReactRouter.Link></h1>
                 <hr/>
             </header>
         )
@@ -21,11 +21,36 @@ const Footer = React.createClass({
 })
 
 const LayoutTemplate = React.createClass({
+    getInitialState: function() {
+        return {alert: [], notice: null, flashShown: false}
+    },
+    noticeUpdateFlash: function(message) {
+        this.setState({notice: message, flashShown: false})
+    },
+    componentWillReceiveProps(nextProps) {
+        if (this.state.flashShown) {
+            this.setState({ notice: null, flashShown: false })
+        } else {
+            this.setState({ flashShown: true })
+        }
+    },
     render: function() {
+        let notice
+        if (this.state.notice) {
+            notice = (
+                <div className="alert alert-success">
+                    <ul><li>{this.state.notice}</li></ul>
+                </div>
+            )
+        }
         return (
             <div>
                 <Header />
-                <ReactRouter.RouteHandler flash={FlashMessage}/>
+                {notice}
+                <ReactRouter.RouteHandler
+                    alert={this.state.alert}
+                    noticeUpdateFlash={this.noticeUpdateFlash}
+                    />
                 <Footer />
             </div>
         )

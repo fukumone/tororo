@@ -1,6 +1,6 @@
 const ArticleEdit = React.createClass({
     getInitialState: function() {
-        return {}
+        return { }
     },
     componentDidMount: function() {
         $.ajax({
@@ -12,9 +12,14 @@ const ArticleEdit = React.createClass({
         })
     },
     render() {
-        var form
+        let form
         if (this.state.article) {
-            form = <ArticleForm action={`/articles/${this.props.params.id}.json`} method="PATCH" submit="Update" article={this.state.article['article']}/>
+            form = <ArticleForm
+                        action={`/articles/${this.props.params.id}.json`}
+                        method="PATCH"
+                        submit="Update"
+                        article={this.state.article['article']}
+                        noticeUpdateFlash={this.props.noticeUpdateFlash} />
         }
         return (
             <div>
