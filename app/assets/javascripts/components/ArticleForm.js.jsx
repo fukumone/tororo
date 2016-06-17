@@ -1,6 +1,6 @@
 const ArticleForm = React.createClass({
     getInitialState: function() {
-        return {name: '', body: '', alert: [], notice: []}
+        return {name: '', body: ''}
     },
     handleSubmit: function(e) {
         e.preventDefault()
@@ -21,7 +21,6 @@ const ArticleForm = React.createClass({
                 this.context.router.transitionTo("/")
             }.bind(this),
             error: function(xhr, status, err) {
-                this.setState({alert: xhr.responseJSON['alert']})
                 console.error(status, err.toString())
             }.bind(this)
         })
@@ -29,13 +28,6 @@ const ArticleForm = React.createClass({
     render() {
         let alerts
         let article = this.props.article
-        if (this.state.alert.length > 0) {
-            alerts = (
-                <div className="alert alert-danger">
-                    <ul>{this.state.alert.map((e, i) => <li key={i}>{e}</li>)}</ul>
-                </div>
-            )
-        }
         return (
             <div>
                 {alerts}
