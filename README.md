@@ -1,6 +1,13 @@
 # tororo
 
-### React サンプルアプリケーション
+### React + Flux サンプルアプリケーション
+
+####react+flux関連の使用ライブラリ
+- react
+- react-dom
+- react-router
+- flux
+- flux-utils
 
 ```
 # setup
